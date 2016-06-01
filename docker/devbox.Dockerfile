@@ -13,4 +13,8 @@ RUN ["ln", "-s", "/home/dkee/dotfiles/gitconfig", "/home/dkee/.gitconfig"]
 RUN ["ln", "-s", "/home/dkee/dotfiles/tmux.conf", "/home/dkee/.tmux.conf"]
 RUN ["emacs", "--load", "/home/dkee/.emacs.d/init.el","--batch"]
 
+USER root
+RUN ["apt-get", "install", "-y", "ruby-full"]
+
+USER dkee
 WORKDIR /host
