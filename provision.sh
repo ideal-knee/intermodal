@@ -27,6 +27,9 @@ ln -s ~/dotfiles/gitconfig ~/.gitconfig
 ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
 emacs --load ~/.emacs.d/init.el --batch
 
+# CHBS
+sudo gem install chbs
+
 # Common Lisp
 sudo apt-get install -y sbcl
 
