@@ -1,2 +1,0 @@
-docker build -t devbox -f docker/devbox.Dockerfile docker/
-docker build -t chbs -f docker/chbs.Dockerfile docker/
