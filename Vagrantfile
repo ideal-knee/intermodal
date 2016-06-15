@@ -12,4 +12,6 @@ Vagrant.configure(2) do |config|
   end
 
   config.vm.provision "shell", path: "provision.sh", privileged: false
+
+  config.ssh.forward_agent = true
 end
