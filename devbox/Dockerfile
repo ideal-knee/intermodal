@@ -1,15 +1,18 @@
 FROM ubuntu:xenial
 
 RUN apt-get update && apt-get install -y \
-  curl  \
-  emacs \
-  git   \
-  tmux  \
+  curl           \
+  emacs          \
+  git            \
+  openssh-server \
+  tmux           \
   tree
 
 ARG user
-RUN useradd $user
+RUN useradd --shell /bin/bash $user
 WORKDIR /home/$user
-USER $user
 
-ENTRYPOINT eval $(ssh-agent) && ssh-add && bash
+RUN mkdir /var/run/sshd
+EXPOSE 22
+
+ENTRYPOINT echo "Starting SSH server..." && /usr/sbin/sshd -D
