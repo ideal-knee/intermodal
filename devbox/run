@@ -1,3 +1,5 @@
 #! /usr/bin/env bash
 
-ssh -p 2222 -A localhost
+ssh-keygen -R [localhost]:2222 && \
+    ssh-keyscan -p 2222 localhost >> ~/.ssh/known_hosts && \
+    ssh -p 2222 -A localhost
