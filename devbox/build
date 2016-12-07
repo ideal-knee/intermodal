@@ -1,4 +1,4 @@
 #! /usr/bin/env bash
 
 docker build --build-arg user=$USER -t devian . && \
-    docker run -v $HOME:/home/$USER -p 2222:22 -t devian
+    docker run -v $HOME:/home/$USER -p 2222:22 -p 3000:3000 -t devian
