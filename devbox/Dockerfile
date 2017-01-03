@@ -15,6 +15,10 @@ RUN apt-get update && apt-get install -y \
 RUN curl -o /usr/local/bin/lein https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein && \
     chmod a+x /usr/local/bin/lein
 
+RUN apt-get update && apt-get install -y \
+  vim           \
+  ruby
+
 ARG user
 RUN useradd --shell /bin/bash $user
 
