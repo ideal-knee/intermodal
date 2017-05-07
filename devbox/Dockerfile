@@ -29,6 +29,18 @@ RUN curl -LO https://github.com/exercism/cli/releases/download/v2.3.0/exercism-l
     tar -xzvf exercism-linux-64bit.tgz && \
     mv exercism /usr/local/bin/
 
+# Node
+RUN apt-get update && apt-get install -y nodejs
+
+# cc (for Rust)
+RUN apt-get update && apt-get install -y build-essential
+
+# Common Lisp
+RUN apt-get update && apt-get install -y sbcl
+
+# boot
+RUN bash -c "cd /usr/local/bin && curl -fsSLo boot https://github.com/boot-clj/boot-bin/releases/download/latest/boot.sh && chmod 755 boot"
+
 # User account
 ARG user
 RUN useradd --shell /bin/bash $user
