@@ -41,6 +41,20 @@ RUN apt-get update && apt-get install -y sbcl
 # boot
 RUN bash -c "cd /usr/local/bin && curl -fsSLo boot https://github.com/boot-clj/boot-bin/releases/download/latest/boot.sh && chmod 755 boot"
 
+# rbenv and Ruby dependencies
+RUN apt-get update && apt-get install -y \
+    autoconf \
+    bison \
+    build-essential \
+    libssl-dev \
+    libyaml-dev \
+    libreadline6-dev \
+    zlib1g-dev \
+    libncurses5-dev \
+    libffi-dev \
+    libgdbm3 \
+    libgdbm-dev
+
 # User account
 ARG user
 RUN useradd --shell /bin/bash $user
