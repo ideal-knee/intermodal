@@ -55,6 +55,22 @@ RUN apt-get update && apt-get install -y \
     libgdbm3 \
     libgdbm-dev
 
+# AWS CLI
+RUN apt-get update && apt-get install -y \
+    python-pip
+RUN pip install --upgrade pip
+RUN pip install awscli --upgrade
+
+# MTR
+RUN apt-get update && apt-get install -y \
+    mtr
+
+# Neanderthal
+RUN apt-get update && apt-get install -y \
+    cpio
+# Assumes library from https://software.intel.com/en-us/mkl downloaded and installed in ~/intel
+RUN echo "TO USE NEANDERTHAL: run repl, etc. with 'LD_LIBRARY_PATH=/home/dkee/intel/compilers_and_libraries_2017.5.239/linux/mkl/lib/intel64_lin/'"
+
 # User account
 ARG user
 RUN useradd --shell /bin/bash $user
