@@ -68,8 +68,16 @@ RUN apt-get update && apt-get install -y \
 # Neanderthal
 RUN apt-get update && apt-get install -y \
     cpio
-# Assumes library from https://software.intel.com/en-us/mkl downloaded and installed in ~/intel
-RUN echo "TO USE NEANDERTHAL: run repl, etc. with 'LD_LIBRARY_PATH=/home/dkee/intel/compilers_and_libraries_2017.5.239/linux/mkl/lib/intel64_lin/'"
+WORKDIR /tmp
+RUN curl -LO http://registrationcenter-download.intel.com/akdlm/irc_nas/tec/12147/l_mkl_2017.4.239.tgz && \
+    tar -xzvf l_mkl_2017.4.239.tgz
+ADD mkl.cfg /tmp/
+WORKDIR /tmp/l_mkl_2017.4.239
+RUN ./install.sh  --silent /tmp/mkl.cfg && \
+    rm /tmp/l_mkl_2017.4.239.tgz && \
+    rm -rf /tmp/l_mkl_2017.4.239
+RUN echo "/opt/intel/compilers_and_libraries_2017.5.239/linux/mkl/lib/intel64_lin/" > /etc/ld.so.conf.d/mkl.conf && \
+    ldconfig
 
 # User account
 ARG user
