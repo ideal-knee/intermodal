@@ -79,6 +79,10 @@ RUN ./install.sh  --silent /tmp/mkl.cfg && \
 RUN echo "/opt/intel/compilers_and_libraries_2017.5.239/linux/mkl/lib/intel64_lin/" > /etc/ld.so.conf.d/mkl.conf && \
     ldconfig
 
+# JQ
+RUN apt-get update && apt-get install -y \
+    jq
+
 # User account
 ARG user
 RUN useradd --shell /bin/bash $user
