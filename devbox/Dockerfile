@@ -80,8 +80,10 @@ RUN echo "/opt/intel/compilers_and_libraries_2017.5.239/linux/mkl/lib/intel64_li
     ldconfig
 
 # JQ
-RUN apt-get update && apt-get install -y \
-    jq
+RUN apt-get update && apt-get install -y jq
+
+# Rails
+RUN apt-get update && apt-get install -y tzdata libsqlite3-dev
 
 # User account
 ARG user
