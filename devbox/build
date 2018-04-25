@@ -5,4 +5,4 @@ docker kill $(docker ps -aq)
 
 echo "Building and running devbox, just so you know..."
 docker build --build-arg user=$USER -t devian . && \
-    docker run -v $HOME:/home/$USER -p 2222:22 -p 3000:3000 -p 3449:3449 -t devian
+    docker run -v $HOME:/home/$USER -p 2222:22 -p 3000:3000 -p 3448:3448 -p 3449:3449 -t devian
