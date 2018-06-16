@@ -85,6 +85,33 @@ RUN apt-get update && apt-get install -y jq
 # Rails
 RUN apt-get update && apt-get install -y tzdata libsqlite3-dev
 
+# Hy
+RUN pip install --upgrade pip && \
+    pip install git+https://github.com/hylang/hy.git
+
+# Gmail API
+RUN pip install --upgrade google-api-python-client
+
+# Spark
+WORKDIR /tmp
+RUN curl -LO http://apache.mirrors.tds.net/spark/spark-2.3.0/spark-2.3.0-bin-hadoop2.7.tgz && \
+    tar -xzvf spark-2.3.0-bin-hadoop2.7.tgz
+
+# entr
+RUN apt-get update && apt-get install -y \
+    entr
+
+# Google Cloud Functions
+RUN apt-get update && apt-get install -y \
+    lsb-release
+RUN echo "deb http://packages.cloud.google.com/apt cloud-sdk-$(lsb_release -c -s) main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
+RUN curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
+RUN apt-get update && apt-get install -y \
+    google-cloud-sdk \
+    google-cloud-sdk-datastore-emulator \
+    google-cloud-sdk-pubsub-emulator
+RUN gcloud components install kubectl
+
 # User account
 ARG user
 RUN useradd --shell /bin/bash $user

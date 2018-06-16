@@ -14,3 +14,6 @@ RUN jupyter notebook --generate-config --allow-root
 COPY post_save_config.py /tmp/
 RUN cat /tmp/post_save_config.py >> $(jupyter --config-dir)/jupyter_notebook_config.py && \
     rm /tmp/post_save_config.py
+
+# Hy
+RUN pip install git+https://github.com/hylang/hy.git
